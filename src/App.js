@@ -28,7 +28,7 @@ function reducer(state, { type, payload }) {
       }
       return {
         ...state,
-        currentOperand: `${currentOperand || ""}${payload.digit}`,
+        currentOperand: `${state.currentOperand || ""}${payload.digit}`,
       };
     case ACTIONS.CHOOSE_OPERATION:
       if (state.currentOperand == null && state.previousOperand == null) {
@@ -116,7 +116,7 @@ function evaluate({ currentOperand, previousOperand, operation }) {
   return computation.toString();
 }
 
-const INTEGER_FORMATTER = new Intl.NumberFormat("en-us0", {
+const INTEGER_FORMATTER = new Intl.NumberFormat("en-us", {
   maximumFractionDigits: 0,
 });
 function formatOperand(operand) {
